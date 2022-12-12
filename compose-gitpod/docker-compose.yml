@@ -1,0 +1,37 @@
+#
+#       AUTHOR - Raman Sailopal
+#
+#       docker compose yml file for the YottaDB-Dashboard stack
+#
+version: "2"
+services:
+ fileman:
+   image: docker.io/vistadataproject/nodevista999
+   hostname: fileman
+   ports:
+      - 9330:9430 
+      - 32:22 
+      - 9100:9000 
+      - 9331:8001
+      - 8083:8083
+      - 8082:8082
+   networks:
+      - yottanet
+
+ react:
+   image: docker.io/ramb0/reactjs
+   hostname: react
+   ports:
+      - 3001:3000
+   environment:
+      - GITADD=$GITADD
+   volumes:
+      - ../react/package.json:/home/react/fileman/package.json
+      - ../react/src:/home/react/fileman/src
+   networks:
+      - yottanet
+   entrypoint: [ "/bin/bash", "-c", "cd /home/react/fileman && npm install && npm start" ]
+
+
+networks:
+    yottanet:

@@ -1,0 +1,168 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css");
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+.rt-th  {
+  background-color:  #4280c2;
+}
+
+.rt-tr:hover {
+  background-color: #b3b1b1;
+  }
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.form {
+  margin: 40px;
+  position: absolute;
+}
+label {
+  color:  #020202;
+  display: block;
+  font-size: 14px;
+  height: 16px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+input {
+  background: transparent;
+  border: 0;
+  color: #050505;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
+  width: 97%;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+input::-moz-focus-inner { 
+  border: 0; 
+}
+
+.rt-resizable-header-content {
+  text-align: left;
+  background-color: #738aa3;
+  border: 1px solid #050505;
+}
+
+h2 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rt-thead -filters {
+  background-color: #a3a273;
+}
+
+
+.leftMenu {
+  display: block;
+  text-align: left;
+  position: fixed;
+  left: 0px;
+  top: 240px;
+  height: 100%;
+  color: black;
+  z-index:100;
+}
+
+.root1{
+  position: absolute;
+  display: block;
+  top: 0%;
+  left: 0%;
+  width:20%;
+  height:20%;
+}
+
+.rightSec {
+  display: block;
+  text-align: left;
+  position: absolute;
+  left: 15%;
+  top: 30%;
+  height: 100%;
+  border: 1px solid white;
+  width: 80%;
+  background-color: white;
+  resize:both;
+  color: rgb(5, 5, 5);
+}
+
+.pagination-bottom{
+  position:sticky;
+  bottom:0px;
+  z-index:200;
+
+}
+
+.rightSecHead {
+  display: block;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  top: 180px;
+  height: 12vh;
+  border: 1px solid #4280c2;
+  width: 15%;
+  background-color: #4280c2;
+  color: black;
+}
+
+.bottomSection {
+  display: block;
+  position:absolute;
+  width: 10%;
+  left:0%;
+  bottom: 0%;
+  height: 60%;
+  z-index:300;
+  top:90%;
+}
+
+.errordiv {
+  border-radius: 25px;
+  margin:20px;
+  position: fixed;
+  border:1px solid black;
+  display: block;
+  width:'10%'; 
+  top: 30%;
+  left: 30%;
+  z-index:200; 
+  resize:both;
+  background:lightgrey;
+}
+
+.formdiv {
+  border-radius: 25px;
+  margin:20px;
+  position: fixed;
+  border:1px solid black;
+  display: block;
+  width:'10%'; 
+  top: 30%;
+  left: 30%;
+  z-index:200; 
+  resize:both;
+  background:rgb(145, 196, 255);
+}
+
+input[type=button] {
+  border-radius: 15px;
+}
