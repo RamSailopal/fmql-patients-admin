@@ -30,4 +30,14 @@ To run a Gitpod with this repo:
  6)  Nagivate to the  address:
 
      http://3001-gitpodaddress
+     
+ # Local Environment
+ 
+ The environmental variable **GITADD** is used to reference the "backend" fmql server and this should be:
+ 
+ http:dockerserveraddress:3001
+ 
+ To set the environment variable, run:
+ 
+     export GITADD="http:dockerserveraddress:3001"
 
