@@ -34,6 +34,7 @@ export default function AppMenu() {
                     <MenuItem href="/patientsbystate">By State</MenuItem>
                     <MenuItem href="/patientsbyage">By Age</MenuItem>
                     <MenuItem href="/patientsbyoccupation">By Occupation</MenuItem>
+                    <MenuItem href="/patientsbysex">By Sex</MenuItem>
             </SubMenu>
         </Menu>
     );
