@@ -26,4 +26,8 @@ To run a Gitpod with this repo:
    ![Alt text](https://github.com/RamSailopal/Fileman-d3/raw/main/corsdisabled.png?raw=true?raw=true "CORS disabled") 
    
    Once the CORS plugin is enabled, the dTree chart for the global will appear.
+   
+ 6)  Nagivate to the  address:
+
+     http://3001-gitpodaddress
 
