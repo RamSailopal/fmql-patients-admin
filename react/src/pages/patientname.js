@@ -150,6 +150,22 @@ const Patientname = () => {
                 </fieldset>
                ,document.getElementById('root'));
         }
+        if (data[0].zip4 !== undefined && data[0].zip4.value !== "") {
+            ReactDOM.render(<iframe title="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-118.47149848937988%2C33.93335515776341%2C-118.41485023498537%2C33.950408878167416&amp;layer=mapnik&amp;marker=33.941882444999436%2C-118.44317436218262"></iframe>,document.getElementById('map'))
+        }
+        else {
+            ReactDOM.render(
+                <div>
+                <p align="center">
+                <h2 class="fs-title"><font color="red">WARNING</font></h2>
+                <h2 class="fs-title"><font color="red">There is no zip code entered for this patient</font></h2>
+                </p>
+                <p align="center">
+                <button onClick={() => document.getElementById('map').style="display:none"}>OK</button>
+                </p>
+                </div>
+                ,document.getElementById('map'))
+        }
         });
     return "";
 };
