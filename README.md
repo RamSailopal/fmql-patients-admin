@@ -29,7 +29,11 @@ To run a Gitpod with this repo:
    
  6)  Once the message **webpack compiled successfully** can be seen on the screen output, nagivate to the  address:
 
-     http://3001-gitpodaddress
+     https://3001-gitpodaddress
+     
+     e.g.
+     
+     https://3001-ramsailopal-fmqlpatient-kwaq1or392o.ws-eu78.gitpod.io
      
  # Local Environment
  
