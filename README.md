@@ -2,6 +2,8 @@
 
 A demonstration of A Patient Administration Reactjs GUI utilising nodevista and fmql as a backend
 
+ ![Alt text](patadmin.webp?raw=true?raw=true "Patient Administration")
+
 # Gitpod
 
 To run a Gitpod with this repo:
