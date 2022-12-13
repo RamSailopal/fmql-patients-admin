@@ -6,5 +6,5 @@ tasks:
 ports:
   - port: 9100
     visibility: public
-  - port: 3000
+  - port: 3001
     visibility: public
