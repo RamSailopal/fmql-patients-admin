@@ -27,7 +27,7 @@ To run a Gitpod with this repo:
    
    Once the CORS plugin is enabled, the dTree chart for the global will appear.
    
- 6)  Nagivate to the  address:
+ 6)  Once the message **webpack compiled successfully** can be seen on the screen output, nagivate to the  address:
 
      http://3001-gitpodaddress
      
@@ -35,9 +35,17 @@ To run a Gitpod with this repo:
  
  The environmental variable **GITADD** is used to reference the "backend" fmql server and this should be:
  
- http:dockerserveraddress:3001
+ **http:dockerserveraddress:3001**
  
  To set the environment variable, run:
  
      export GITADD="http:dockerserveraddress:3001"
+     
+ Then run:
+ 
+     git clone https://github.com/RamSailopal/fmql-patients-admin.git
+     
+     cd fmql-patients-admin
+     
+     docker-compose up
 
