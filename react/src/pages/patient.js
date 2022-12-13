@@ -8,10 +8,12 @@ const Patient = () => {
     var arr=[];
     let jsonstr= async() => {
         var x= await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE%202-' + id });
-        var y = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 9000001-' + id });
-        arr = arr.concat(x.data.results[0]);
-        arr = arr.concat(y.data.results[0].health_record_no)
-        console.log(arr[1].value[0].health_record_no.value);
+        if (x.data.results !== undefined) {
+            var y = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 9000001-' + id });
+            arr = arr.concat(x.data.results[0]);
+            arr = arr.concat(y.data.results[0].health_record_no)
+            console.log(arr[1].value[0].health_record_no.value);
+        }
         return arr;
     }
     jsonstr().then((data)=> {
@@ -33,15 +35,15 @@ const Patient = () => {
                 ,document.getElementById('root'));
         }
         else {
-        let sx;
-        if (data[0].sex.value === "MALE") {
-            sx="men"
-        }
-        else {
-            sx="women"
-        }
-        ReactDOM.render(
-            <fieldset class="fieldset">
+            let sx;
+            if (data[0].sex.value === "MALE") {
+                sx="men"
+            }
+            else {
+                sx="women"
+            }
+            ReactDOM.render(
+                <fieldset class="fieldset">
                 <form id="msform">
                 <img alt="" src={'https://randomuser.me/api/portraits/' + sx + '/' + data[0].uri.value.replace("2-","") + '.jpg'}/>
                 <label>ID:

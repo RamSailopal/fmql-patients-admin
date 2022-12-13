@@ -7,10 +7,12 @@ const Patientname = () => {
     var arr=[];
     let jsonstr= async() => {
         var x= await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 2 FILTER (.01=' + name + ')' });
-        var y = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 9000001-' + x.data.results[0].uri.value.replace("2-","") });
-        arr = arr.concat(x.data.results[0]);
-        arr = arr.concat(y.data.results[0].health_record_no)
-        console.log(arr[1].value[0].health_record_no.value);
+        if (x.data.results[0] !== undefined) {
+            var y = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 9000001-' + x.data.results[0].uri.value.replace("2-","") });
+            arr = arr.concat(x.data.results[0]);
+            arr = arr.concat(y.data.results[0].health_record_no)
+            console.log(arr[1].value[0].health_record_no.value);
+        }
         return arr;
 
     }
@@ -40,8 +42,8 @@ const Patientname = () => {
             else {
                 sx="women"
             }
-        ReactDOM.render(
-            <fieldset>
+            ReactDOM.render(
+                 <fieldset>
                 <form>
                 <img alt="" src={'https://randomuser.me/api/portraits/' + sx + '/' + data[0].uri.value.replace("2-","") + '.jpg'}/>
                 <label>ID:

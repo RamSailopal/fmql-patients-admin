@@ -8,10 +8,12 @@ const Patientssn = () => {
     var arr=[];
     let jsonstr= async() => {
         var x= await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 2 FILTER (.09=' + ssn + ')' });
-        var y = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 9000001-' + x.data.results[0].uri.value.replace("2-","") });
-        arr = arr.concat(x.data.results[0]);
-        arr = arr.concat(y.data.results[0].health_record_no)
-        console.log(arr[1].value[0].health_record_no.value);
+        if (x.data.results[0] !== undefined) {
+            var y = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 9000001-' + x.data.results[0].uri.value.replace("2-","") });
+            arr = arr.concat(x.data.results[0]);
+            arr = arr.concat(y.data.results[0].health_record_no)
+            console.log(arr[1].value[0].health_record_no.value);
+        }
         return arr;
     }
     jsonstr().then((data)=> {
@@ -20,7 +22,7 @@ const Patientssn = () => {
             window.location="/patients";
           }
         if (data[0] === undefined) {
-            ReactDOM.render(
+            root.render(
                 <div class="errordiv">
                 <p align="center">
                 <h2 class="fs-title"><font color="red">ERROR</font></h2>
@@ -30,18 +32,18 @@ const Patientssn = () => {
                 <button onClick={cliked}>OK</button>
                 </p>
                 </div>
-                ,document.getElementById('root'));
+                );
         }
         else {
-        let sx;
-        if (data[0].sex.value === "MALE") {
-            sx="men"
-        }
-        else {
-            sx="women"
-        }
-        root.render(
-            <fieldset>
+            let sx;
+            if (data[0].sex.value === "MALE") {
+                sx="men"
+            }
+            else {
+                sx="women"
+            }
+            root.render(
+                <fieldset>
                 <form>
                 <img alt="" src={'https://randomuser.me/api/portraits/' + sx + '/' + data[0].uri.value.replace("2-","") + '.jpg'}/>
                 <label>ID:
