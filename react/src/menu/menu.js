@@ -21,6 +21,13 @@ export default function AppMenu() {
                 offsetY="25"
                 href="/patients">List Patients
             </MenuItem>
+            <MenuItem
+                direction="bottom"
+                position="right"
+                offsetX="5"
+                offsetY="25"
+                href="/newpatient">Create Patient
+            </MenuItem>
             <SubMenu label="Select Patient" direction="right">
                     <MenuItem href="/patientbyid">
                     By ID</MenuItem>

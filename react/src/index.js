@@ -8,6 +8,7 @@ import Charts3 from './pages/charts3.js';
 import Charts4 from './pages/charts4.js';
 import NoPage from './pages/nopage.js';
 import Patient from './pages/patient.js';
+import Newpatient from './pages/newpatient.js';
 import PatientByName from './pages/patientbyname.js';
 import PatientBySSN from './pages/patientbyssn.js';
 import Patientname from './pages/patientname.js';
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="patients" element={<Patients />} />
           <Route path="*" element={<NoPage />} />
           <Route path="patient/:id" element={<Patient />} />
+          <Route path="newpatient/" element={<Newpatient />} />
           <Route path="patientname/:name" element={<Patientname />} />
           <Route path="patientssn/:ssn" element={<Patientssn />} />
           <Route path="patientsbycity" element={<Charts />} />

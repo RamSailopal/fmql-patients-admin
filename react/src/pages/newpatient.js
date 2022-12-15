@@ -3,13 +3,8 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import '../index.css';
-const Patient = () => {
-    const {id}=useParams();
+const Newpatient = () => {
     var arr=[];
-    function proczip() {
-        document.getElementById('map').style="display:none"; 
-        document.getElementById('zip').focus;
-    }
     function reseterr(err) {
         if (document.getElementById(err)!==null) {
             document.getElementById(err).value="";
@@ -94,52 +89,23 @@ const Patient = () => {
         }
     }
     let jsonstr= async() => {
-        var x= await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE%202-' + id });
-        if (x.data.results !== undefined) {
-            var y = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=DESCRIBE 9000001-' + id });
-            arr = arr.concat(x.data.results[0]);
-            if (y.data.results !== undefined) {
-                arr = arr.concat(y.data.results[0].health_record_no)
-                console.log(arr[1].value[0].health_record_no.value);
-            }
-        }
-        return arr;
+        var x= await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=COUNT 2' });
+        console.log(x.data);
+        return x.data.count;
     }
     jsonstr().then((data)=> {
         function cliked() {
             document.getElementById('root').style="display:none";
             window.location="/patients";
           }
-        if (data[0] === undefined) {
-            ReactDOM.render(
-                <div class="errordiv">
-                <p align="center">
-                <h2 class="fs-title"><font color="red">ERROR</font></h2>
-                <h2 class="fs-title"><font color="red">No Details Found for ID number {id} </font></h2>
-                </p>
-                <p align="center">
-                <button onClick={cliked}>OK</button>
-                </p>
-                </div>
-                ,document.getElementById('root'));
-        }
-        else {
-            let sx;
-            if (data[0].sex.value === "MALE") {
-                sx="men"
-            }
-            else {
-                sx="women"
-            }
             ReactDOM.render(
                 <div>
                 <fieldset class="fieldset">
-                <img alt="" src={'https://randomuser.me/api/portraits/' + sx + '/' + data[0].uri.value.replace("2-","") + '.jpg'}/>
                 <label>ID:
                 <input
                     id="id"
                     type="text" 
-                    value={data[0].uri.value.replace("2-","")}
+                    value={parseInt(data)+1}
                     disabled={true}
                  />
                 </label><br></br><br></br>
@@ -147,7 +113,7 @@ const Patient = () => {
                 <input
                     id="name"
                     type="text" 
-                    defaultValue={data[0].name.value}
+                    defaultValue=""
                     disabled={false}
                     size="25"
                  />
@@ -157,7 +123,7 @@ const Patient = () => {
                 <label>Hospital Number:
                 <input
                     type="text" 
-                    defaultValue={data[1] !== undefined ? data[1].value[0].health_record_no.value : ""}
+                    defaultValue=""
                     disabled={true}
                     size="25"
                  />
@@ -167,8 +133,8 @@ const Patient = () => {
                 
                 <label>Sex:
                 <select id="sex">
-                    <option id="M" selected={data[0].sex.value === "MALE" ? "selected" : ""}>Male</option>
-                    <option id="F" selected={data[0].sex.value === "FEMALE" ? "selected" : ""}>Female</option>
+                    <option id="M">Male</option>
+                    <option id="F">Female</option>
                 </select>
                
                 </label><br></br><br></br>
@@ -176,7 +142,7 @@ const Patient = () => {
                 <input
                     type="date" 
                     id="dob"
-                    defaultValue={data[0].date_of_birth !== undefined ? data[0].date_of_birth.value.replace("T00:00:00Z","") : ""}
+                    defaultValue=""
                     disabled={false}
                  />
                 </label><br></br>
@@ -185,7 +151,7 @@ const Patient = () => {
                 <label>Social Security Number:
                 <input
                     type="text" 
-                    defaultValue={data[0].social_security_number !== undefined ? data[0].social_security_number.value : ""}
+                    defaultValue=""
                     disabled={true}
                  />
                 </label><br></br>
@@ -195,7 +161,7 @@ const Patient = () => {
                 <input
                     type="text" 
                     id="city"
-                    defaultValue={data[0].place_of_birth_city.value}
+                    defaultValue=""
                     disabled={false}
                  />
                 </label><br></br>
@@ -204,7 +170,7 @@ const Patient = () => {
                 <label>Place of Birth State:
                 <input
                     type="text" 
-                    defaultValue={data[0].place_of_birth_state !== undefined ? data[0].place_of_birth_state.sameAsLabel : ""}
+                    defaultValue=""
                     disabled={true}
                  />
                 </label><br></br>
@@ -214,7 +180,7 @@ const Patient = () => {
                 <input
                     id="zip"
                     type="text" 
-                    defaultValue={data[0].zip4===undefined ? "" : data[0].zip4.value}
+                    defaultValue=""
                     disabled={false}
                  />
                 </label><br></br>
@@ -224,7 +190,7 @@ const Patient = () => {
                 <input
                     type="text" 
                     id="occupation"
-                    defaultValue={data[0].occupation===undefined ? "" : data[0].occupation.value}
+                    defaultValue=""
                     disabled={false}
                  />
                  </label><br></br>
@@ -234,7 +200,7 @@ const Patient = () => {
                 <input
                     id="residence"
                     type="text" 
-                    defaultValue={data[0].phone_number_residence===undefined ? "" : data[0].phone_number_residence.value}
+                    defaultValue=""
                     disabled={false}
                  />
                 </label><br></br>
@@ -244,7 +210,7 @@ const Patient = () => {
                 <input
                     id="cell"
                     type="text" 
-                    defaultValue={data[0].phone_number_cellular===undefined ? "" : data[0].phone_number_cellular.value}
+                    defaultValue=""
                     disabled={false}
                  />
                 </label><br></br>
@@ -254,7 +220,7 @@ const Patient = () => {
                 <input
                     id="work"
                     type="text" 
-                    defaultValue={data[0].phone_number_work===undefined ? "" : data[0].phone_number_work.value}
+                    defaultValue=""
                     disabled={false}
                  />
                 </label><br></br>
@@ -263,7 +229,7 @@ const Patient = () => {
                 <input
                     id="email"
                     type="text" 
-                    defaultValue={data[0].email_address===undefined ? "" : data[0].email_address.value}
+                    defaultValue=""
                     disabled={false}
                     onfocus={reseterr("emailerr")}
                  />
@@ -276,24 +242,7 @@ const Patient = () => {
                 <br></br>
                 </div>
                ,document.getElementById('root'));
-        }
-        if (data[0].zip4 !== undefined && data[0].zip4.value !== "") {
-            ReactDOM.render(<iframe title="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-118.47149848937988%2C33.93335515776341%2C-118.41485023498537%2C33.950408878167416&amp;layer=mapnik&amp;marker=33.941882444999436%2C-118.44317436218262"></iframe>,document.getElementById('map'))
-        }
-        else {
-            ReactDOM.render(
-                <div>
-                <p align="center">
-                <h2 class="fs-title"><font color="red">WARNING</font></h2>
-                <h2 class="fs-title"><font color="red">There is no zip code entered for this patient</font></h2>
-                </p>
-                <p align="center">
-                <button onClick={proczip}>OK</button>
-                </p>
-                </div>
-                ,document.getElementById('map'))
-        }
         });
     return "";
 };
-export default Patient;
+export default Newpatient;

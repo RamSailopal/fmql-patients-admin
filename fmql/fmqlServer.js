@@ -141,34 +141,54 @@ else {
     });
 
     app.post("/patdet", function(req, res) {
-        var pat = req.body.id;
-        var zip = req.body.zip;
-        var name = req.body.name;
-        var occupation = req.body.occupation;
-        var city = req.body.city;
-        var cell = req.body.cell;
-        var work = req.body.work;
-        var residence = req.body.residence;
-        var email = req.body.email;
-        var sex = req.body.sex;
-        var totres="";
-        var dbres=db.get({global: '^DPT', subscripts: [pat, '0']});  
-        if (dbres.data !== "") {
-            var reslts=dbres.data.split("^");
-            for (i=0;i<reslts.length;i++) {
-                if (i===0) {
-                    reslts[i]=name;
+            var pat = req.body.id;
+            var zip = req.body.zip;
+            var name = req.body.name;
+            var occupation = req.body.occupation;
+            var city = req.body.city;
+            var cell = req.body.cell;
+            var work = req.body.work;
+            var residence = req.body.residence;
+            var email = req.body.email;
+            var sex = req.body.sex;
+            var totres="";
+            var dbres=db.get({global: '^DPT', subscripts: [pat, '0']});  
+            if (dbres.data !== "") {
+                var reslts=dbres.data.split("^");
+                for (i=0;i<reslts.length;i++) {
+                    if (i===0) {
+                        reslts[i]=name;
+                    }
+                    if (i===1) {
+                        reslts[i]=sex;
+                    }
+                    if (i===6) {
+                        reslts[i]=occupation;
+                    }
+                    if (i===10) {
+                        reslts[i]=city;
+                    }    
+                    totres=totres + reslts[i] + '^';
                 }
-                if (i===1) {
-                    reslts[i]=sex;
+            }
+            else {
+                for (i=0;i<21;i++) {
+                    if (i===0) {
+                        totres=totres + name;
+                    }
+                    if (i===1) {
+                        totres=totres + sex;
+                    }
+                    if (i===6) {
+                        totres=totres + occupation;
+                    }
+                    if (i===10) {
+                        totres=totres + city;
+                    } 
+                    else {
+                        totres=totres + "^";
+                    }   
                 }
-                if (i===6) {
-                    reslts[i]=occupation
-                }
-                if (i===10) {
-                    reslts[i]=city
-                }    
-                totres=totres + reslts[i] + '^';
             }
             db.set('^DPT', pat, '0', totres);
             totres="";
@@ -194,7 +214,7 @@ else {
                         totres=totres + zip;
                     }   
                     else {
-                        totres=totres + "^"
+                        totres=totres + "^";
                     } 
                 } 
             }
@@ -234,14 +254,13 @@ else {
                         totres=totres + cell;
                     }   
                     else {
-                        totres=totres + "^"
+                        totres=totres + "^";
                     } 
                 } 
             }
             db.set('^DPT', pat, '.13', totres);
-        } 
-        res.send('{ "status": "success" }');
-      });
+            res.send('{ "status": "success" }');
+            });
 
     // Not FMQL - try static - Express 4 respects order
     app.use(express.static(__dirname + "/static")); //use static files in ROOT/public folder
