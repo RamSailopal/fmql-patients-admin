@@ -172,6 +172,6 @@ input[type=button] {
   display: block;
   left:60%;
   top:35%;
-  z-index:900;
+  z-index:1000;
   border:1px solid black;
 }
