@@ -15,8 +15,11 @@ services:
       - 9331:8001
       - 8083:8083
       - 8082:8082
+   volumes:
+      - ../fmql:/home/fmqlput
    networks:
       - yottanet
+   entrypoint: [ "/bin/bash", "-c", "cd /home/fmqlput && ./entrypoint.sh" ]
 
  react:
    image: docker.io/ubuntu
