@@ -153,6 +153,10 @@ else {
             var residence = req.body.residence;
             var email = req.body.email;
             var sex = req.body.sex;
+            var dob = req.body.dob;
+            var state = req.body.state;
+            var ssn = req.body.ssn;
+            var hos = req.body.hos;
             var totres="";
             var dbres=db.get({global: '^DPT', subscripts: [pat, '0']});  
             if (dbres.data !== "") {
@@ -164,11 +168,20 @@ else {
                     if (i===1) {
                         reslts[i]=sex;
                     }
+                    if (i===2) {
+                        reslts[i]=dob;
+                    }
                     if (i===6) {
                         reslts[i]=occupation;
                     }
+                    if (i===8) {
+                        reslts[i]=ssn;
+                    }
                     if (i===10) {
                         reslts[i]=city;
+                    }    
+                    if (i===11) {
+                        reslts[i]=state;
                     }    
                     totres=totres + reslts[i] + '^';
                 }
@@ -181,11 +194,20 @@ else {
                     if (i===1) {
                         totres=totres + sex;
                     }
+                    if (i===2) {
+                        totres=totres + dob;
+                    }
                     if (i===6) {
                         totres=totres + occupation;
                     }
+                    if (i===8) {
+                        totres=totres + ssn;
+                    }
                     if (i===10) {
                         totres=totres + city;
+                    } 
+                    if (i===11) {
+                        totres=totres + state;
                     } 
                     else {
                         totres=totres + "^";
@@ -261,6 +283,23 @@ else {
                 } 
             }
             db.set('^DPT', pat, '.13', totres);
+            db.set('^AUPNPAT', pat, '0', pat);
+            db.set('^AUPNPAT', pat, '41', '0', '^9000001.41IPA^1^1');
+            totres="";
+            var dbres=db.get({global: '^AUPNPAT', subscripts: [pat, '41', '1', '0']});
+            if (dbres.data !== "") {
+                var reslts=dbres.data.split("^");
+                for (i=0;i<reslts.length;i++) {
+                    if (i===1) {
+                        reslts[i]=hos;
+                    }
+                    totres=totres + reslts[i] + '^';
+                }
+            }
+            else {
+                totres="1^" + hos;
+            }
+            db.set('^AUPNPAT', pat, '41', '1', '0', totres);
             res.send('{ "status": "success" }');
             });
 

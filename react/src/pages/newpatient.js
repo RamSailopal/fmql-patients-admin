@@ -5,12 +5,24 @@ import { useParams } from 'react-router-dom';
 import '../index.css';
 const Newpatient = () => {
     var arr=[];
+    function getmaxdate() {
+        const date = new Date();
+        const day=date.getDate();
+        const mn=date.getMonth()+1;
+        const yr=date.getFullYear();
+        return String(yr) + "-" + String(mn) + "-" + String(day);
+    }
     function reseterr(err) {
         if (document.getElementById(err)!==null) {
             document.getElementById(err).value="";
         }
     }
     function savezip() {
+        var dob1=document.getElementById('dob').value.split("-");
+        var yr=dob1[0];
+        var mn=dob1[1];
+        var dy=dob1[2];
+        var sdob='2' + yr.substr(2,3) + mn + dy;
         var err=0;
         if (document.getElementById('occupation').value.length < 1) {
             document.getElementById("occupationerror").value="Occupation cannot be less the 1 in length";
@@ -56,6 +68,22 @@ const Newpatient = () => {
             document.getElementById("residenceerror").value="Residential number cannot be greater than 20 in length";
             err=1;
         }
+        if (document.getElementById('hos').value.length < 9) {
+            document.getElementById("hoserror").value="Hospital number must be 9 digits";
+            err=1;
+        }
+        if (document.getElementById('hos').value.length > 20) {
+            document.getElementById("hoserror").value="Hospital number must be 9 digits";
+            err=1;
+        }
+        if (document.getElementById('ssn').value.length < 9) {
+            document.getElementById("ssnerror").value="Social security number must be 9 digits";
+            err=1;
+        }
+        if (document.getElementById('ssn').value.length > 20) {
+            document.getElementById("ssnerror").value="Social security number must be 9 digits";
+            err=1;
+        }
         //
         // Validate email address through regex
         //
@@ -76,7 +104,10 @@ const Newpatient = () => {
                 cell: document.getElementById('cell').value,
                 email: document.getElementById('email').value,
                 sex: document.getElementById('sex').options[document.getElementById('sex').selectedIndex].id,
-                dob: document.getElementById('dob').value
+                dob: sdob,
+                state: document.getElementById('state').options[document.getElementById('state').selectedIndex].id,
+                ssn: document.getElementById('ssn').value,
+                hos: document.getElementById('hos').value
             };
             axios.post(process.env.REACT_APP_GITADD + '/patdet', data)
             .then((res) => {
@@ -89,9 +120,17 @@ const Newpatient = () => {
         }
     }
     let jsonstr= async() => {
+        var arr = [];
         var x= await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=COUNT 2' });
-        console.log(x.data);
-        return x.data.count;
+        if (x.data.results !== undefined) {
+            arr = arr.concat(x.data);
+            var z = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=SELECT 5' });
+            if (z.data.results !== undefined) {
+                arr = arr.concat(z.data);
+            }
+        }
+        console.log(arr);
+        return arr;
     }
     jsonstr().then((data)=> {
         function cliked() {
@@ -105,7 +144,7 @@ const Newpatient = () => {
                 <input
                     id="id"
                     type="text" 
-                    value={parseInt(data)+1}
+                    value={parseInt(data[0].count)+1}
                     disabled={true}
                  />
                 </label><br></br><br></br>
@@ -122,9 +161,10 @@ const Newpatient = () => {
                 <br></br>
                 <label>Hospital Number:
                 <input
+                    id="hos"
                     type="text" 
                     defaultValue=""
-                    disabled={true}
+                    disabled={false}
                     size="25"
                  />
                 </label><br></br>
@@ -141,6 +181,7 @@ const Newpatient = () => {
                 <label>Date of Birth:
                 <input
                     type="date" 
+                    max={getmaxdate()}
                     id="dob"
                     defaultValue=""
                     disabled={false}
@@ -150,9 +191,10 @@ const Newpatient = () => {
                 <br></br>
                 <label>Social Security Number:
                 <input
+                    id="ssn"
                     type="text" 
                     defaultValue=""
-                    disabled={true}
+                    disabled={false}
                  />
                 </label><br></br>
                 <input type="text" id="ssnerror" defaultValue="" disabled={true} style={{color:'red', fontSize: '80%'}}/><br></br>
@@ -168,11 +210,13 @@ const Newpatient = () => {
                 <input type="text" id="cityerror" defaultValue="" disabled={true} style={{color:'red', fontSize: '80%'}}/><br></br>
                 <br></br>
                 <label>Place of Birth State:
-                <input
-                    type="text" 
-                    defaultValue=""
-                    disabled={true}
-                 />
+                <select id="state">
+                 {
+                    data[1].results.map((states) => 
+                        <option id={states.uri.value.replace("5-","")}>{states.uri.sameAsLabel}</option>
+                    )
+                }
+                </select>
                 </label><br></br>
                 <br></br>
                 <input type="text" id="stateerror" defaultValue="" disabled={true} style={{color:'red', fontSize: '80%'}}/><br></br>
