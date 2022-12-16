@@ -37,6 +37,7 @@ var express = require("express"),
     nodem = require('nodem'),
     fmql = require('./fmql'),
     bodyParser = require('body-parser'),
+    cors = require('cors'),
     port = process.argv[2] || 9000;
 
 /*
@@ -85,6 +86,7 @@ else {
 
     // gzip etc if accepted - must come before middleware for static handling
     app.use(compress());
+    app.use(cors());
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json()); 
 
