@@ -6,13 +6,10 @@ A demonstration of A Patient Administration Reactjs GUI utilising nodevista and 
 
 # Gitpod
 
-To run a Gitpod with this repo:
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RamSailopal/YDBGUI) for free (simply create an account)
 
-1) Create a free/paid Gitpod account - https://www.gitpod.io/
-2) Log into the account
-3) Open a new browser tab and add **https://github.com/RamSailopal/fmql-patients-admin** to the address - This will create a new Gitpod cloud instance.
-4) Step 3 is for sample only. If you want to make changes to your own repo, first fork this repo and then add that repo after the **gitpod.io/#** prefix to create a new gitpod intance.
-5)  Once the message **webpack compiled successfully** can be seen on the screen output, nagivate to the  address:
+
+Once the message **webpack compiled successfully** can be seen on the screen output, navigate to the  address:
 
      https://3001-gitpodaddress
      
