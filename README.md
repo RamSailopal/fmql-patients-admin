@@ -28,7 +28,7 @@ To run a Gitpod with this repo:
  
  Another **ZIPADD** variable is used to reference the "backend" zip api server (to render open street maps for each patient)
  
- To set the environment variable, run:
+ To set the environment variables, run:
  
      export GITADD="http:dockerserveraddress:3001"
     
