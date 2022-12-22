@@ -134,6 +134,12 @@ const Patient = () => {
                 var z = await axios({url: process.env.REACT_APP_GITADD + '/fmqlEP?fmql=SELECT 5' });
                 if (z.data.results !== undefined) {
                     arr = arr.concat(z.data);
+                }
+            }
+            if (x.data.results[0].zip4 != undefined) {
+                var za = await axios({url: process.env.REACT_APP_ZIPADD + '/zip?zip=' + x.data.results[0].zip4.value});
+                if (za.data[0] !== undefined) {
+                    arr = arr.concat(za.data[0]);
                     console.log(arr);
                 }
             }
@@ -318,7 +324,7 @@ const Patient = () => {
                ,document.getElementById('root'));
         }
         if (data[0].zip4 !== undefined && data[0].zip4.value !== "") {
-            ReactDOM.render(<iframe title="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-118.47149848937988%2C33.93335515776341%2C-118.41485023498537%2C33.950408878167416&amp;layer=mapnik&amp;marker=33.941882444999436%2C-118.44317436218262"></iframe>,document.getElementById('map'))
+            ReactDOM.render(<iframe title="map" width="425" height="350" frameborder="0" scrolling="no" marginHeight="0" marginWidth="0" src={"https://www.openstreetmap.org/export/embed.html?bbox=" + data[3].long + "%2C" + data[3].lat + "%2C" + data[3].long + "%2C" + data[3].lat + "&amp;layer=mapnik&amp;marker=" + data[3].long + "%2C" + data[3].lat}></iframe>,document.getElementById('map'))
         }
         else {
             ReactDOM.render(
