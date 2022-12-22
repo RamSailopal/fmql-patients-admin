@@ -29,6 +29,8 @@ To run a Gitpod with this repo:
  To set the environment variable, run:
  
      export GITADD="http:dockerserveraddress:3001"
+    
+     export ZIPADD="http:dockerserveraddress:5000"
      
  Then run:
  
