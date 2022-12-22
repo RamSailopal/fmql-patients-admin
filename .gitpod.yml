@@ -2,7 +2,7 @@ tasks:
   - init: |
       echo 'TODO: build project'
     command: |
-      export GITADD="https://9100-${GITPOD_WORKSPACE_URL##https://}" && cd compose && docker-compose up
+      export GITADD="https://9100-${GITPOD_WORKSPACE_URL##https://}" && export ZIPADD="https://5000-${GITPOD_WORKSPACE_URL##https://}" && cd compose && docker-compose up
 ports:
   - port: 9100
     visibility: public
