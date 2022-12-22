@@ -6,7 +6,7 @@ A demonstration of A Patient Administration Reactjs GUI utilising nodevista and 
 
 # Gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RamSailopal/YDBGUI) for free (simply create an account)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RamSailopal/fmql-patients-admin) for free (simply create an account)
 
 
 Once the message **webpack compiled successfully** can be seen on the screen output, navigate to the  address:
