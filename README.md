@@ -39,5 +39,5 @@ Once the message **webpack compiled successfully** can be seen on the screen out
      
      docker-compose up
      
- On completion, navigate to http://localhost:3000
+ On completion, navigate to http://dockerserver:3000
 
