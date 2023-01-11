@@ -21,15 +21,15 @@ Once the message **webpack compiled successfully** can be seen on the screen out
  
  The environmental variable **GITADD** is used to reference the "backend" fmql server and this should be:
  
- **http:dockerserveraddress:3001**
+ **http://dockerserveraddress:3001**
  
  Another **ZIPADD** variable is used to reference the "backend" zip api server (to render open street maps for each patient)
  
  To set the environment variables, run:
  
-     export GITADD="http:dockerserveraddress:3001"
+     export GITADD="http://dockerserveraddress:3001"
     
-     export ZIPADD="http:dockerserveraddress:5000"
+     export ZIPADD="http://dockerserveraddress:5000"
      
  Then run:
  
@@ -38,4 +38,6 @@ Once the message **webpack compiled successfully** can be seen on the screen out
      cd fmql-patients-admin
      
      docker-compose up
+     
+ On completion, navigate to http://localhost:3000
 
