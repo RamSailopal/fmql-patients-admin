@@ -1,11 +1,6 @@
-import { createRoot } from 'react-dom/client';
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 const Patientssn = () => {
-    const container = document.getElementById('root');
-    const root = createRoot(container);
-    const container1 = document.getElementById('map');
-    const map = createRoot(container1);
     const {ssn}=useParams();
     var arr=[];
     let jsonstr= async() => {

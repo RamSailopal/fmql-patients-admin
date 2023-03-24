@@ -15,7 +15,7 @@ const Patient = () => {
     }
     function proczip() {
         document.getElementById('map').style="display:none"; 
-        document.getElementById('zip').focus;
+        document.getElementById('zip').focus();
     }
     function reseterr(err) {
         if (document.getElementById(err)!==null) {
@@ -136,7 +136,7 @@ const Patient = () => {
                     arr = arr.concat(z.data);
                 }
             }
-            if (x.data.results[0].zip4 != undefined) {
+            if (x.data.results[0].zip4 !== undefined) {
                 var za = await axios({url: process.env.REACT_APP_ZIPADD + '/zip?zip=' + x.data.results[0].zip4.value});
                 if (za.data[0] !== undefined) {
                     arr = arr.concat(za.data[0]);

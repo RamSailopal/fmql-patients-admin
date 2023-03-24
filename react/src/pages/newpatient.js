@@ -1,10 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
 import '../index.css';
 const Newpatient = () => {
-    var arr=[];
     function getmaxdate() {
         const date = new Date();
         const day=date.getDate();
@@ -133,10 +131,7 @@ const Newpatient = () => {
         return arr;
     }
     jsonstr().then((data)=> {
-        function cliked() {
-            document.getElementById('root').style="display:none";
-            window.location="/patients";
-          }
+       
             ReactDOM.render(
                 <div>
                 <fieldset class="fieldset">
