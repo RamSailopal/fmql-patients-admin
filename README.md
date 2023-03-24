@@ -27,7 +27,7 @@ Once the message **webpack compiled successfully** can be seen on the screen out
  
  To set the environment variables, run:
  
-     export GITADD="http://dockerserveraddress:3001"
+     export GITADD="http://dockerserveraddress:9100"
     
      export ZIPADD="http://dockerserveraddress:5000"
      
